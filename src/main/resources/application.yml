@@ -1,0 +1,20 @@
+server:
+  port: 13030
+  shutdown: graceful
+
+spring:
+  profiles:
+    active: local
+    group:
+      local:
+        - console-logging # 콘솔 로깅만 사용
+      test:
+        - console-logging
+      prod:
+        - console-logging
+        - console-logging
+    include:
+      - console-logging
+  application:
+    name: quartz
+
