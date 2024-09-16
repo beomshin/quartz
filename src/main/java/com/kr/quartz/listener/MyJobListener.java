@@ -19,7 +19,7 @@ public class MyJobListener implements JobListener {
 
     @Override
     public void jobToBeExecuted(JobExecutionContext jobExecutionContext) {
-        log.info("jobToBeExecuted"); // job 실행 시점
+//        log.info("Job 시작"); // job 실행 시점
     }
 
     @Override
@@ -29,6 +29,6 @@ public class MyJobListener implements JobListener {
 
     @Override
     public void jobWasExecuted(JobExecutionContext jobExecutionContext, JobExecutionException e) {
-        log.info("jobWasExecuted"); // job 종료 시점
+//        log.info("Job 종료"); // job 종료 시점
     }
 }

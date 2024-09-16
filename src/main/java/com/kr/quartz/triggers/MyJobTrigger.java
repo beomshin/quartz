@@ -3,10 +3,7 @@ package com.kr.quartz.triggers;
 import com.kr.quartz.jobs.MyJob;
 import com.kr.quartz.jobs.MyQuartzJob;
 import lombok.extern.slf4j.Slf4j;
-import org.quartz.JobBuilder;
-import org.quartz.SchedulerException;
-import org.quartz.SimpleScheduleBuilder;
-import org.quartz.TriggerBuilder;
+import org.quartz.*;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Component;
 
@@ -30,12 +27,16 @@ public class MyJobTrigger {
                 .startNow()
                 .withSchedule(
                         SimpleScheduleBuilder.simpleSchedule()
-                                .withIntervalInSeconds(5)
+                                .withIntervalInSeconds(20)
                                 .repeatForever()
                 )
                 .build();
 
-//        schedulerFactoryBean.getScheduler().scheduleJob(jobDetail, trigger);
+        if (schedulerFactoryBean.getObject().checkExists(jobDetail.getKey())) {
+            return;
+        }
+
+        schedulerFactoryBean.getScheduler().scheduleJob(jobDetail, trigger);
     }
 
 }

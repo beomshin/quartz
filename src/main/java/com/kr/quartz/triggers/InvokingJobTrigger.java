@@ -7,12 +7,14 @@ import org.quartz.JobBuilder;
 import org.quartz.SchedulerException;
 import org.quartz.SimpleScheduleBuilder;
 import org.quartz.TriggerBuilder;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
+@Profile("invoking") // h2 quartz 데이터베이스 생성 시  methodInvoker 직렬화 에러 발생
 public class InvokingJobTrigger {
 
     public InvokingJobTrigger(SchedulerFactoryBean schedulerFactoryBean) throws SchedulerException, ClassNotFoundException, NoSuchMethodException {
@@ -33,6 +35,7 @@ public class InvokingJobTrigger {
                                 .repeatForever()
                 )
                 .build();
+
 
         schedulerFactoryBean.getScheduler().scheduleJob(jobDetail.getObject(), trigger);
     }

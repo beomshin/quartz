@@ -15,7 +15,7 @@ public class MyQuartzJobTrigger {
 
         var jobDetail = JobBuilder
                 .newJob(MyQuartzJob.class)
-                .withIdentity("myQuartzJob", "group1")
+                .withIdentity("myQuartzJob", "group2")
                 .withDescription("my job description")
                 .requestRecovery(true)
                 .storeDurably(true)
@@ -23,12 +23,16 @@ public class MyQuartzJobTrigger {
                 .build();
 
         var trigger = TriggerBuilder.newTrigger()
-                .withIdentity("myQuartzTrigger", "group1")
+                .withIdentity("myQuartzTrigger", "group2")
                 .startNow()
                 .withSchedule(
                         CronScheduleBuilder.cronSchedule("0/5 * * * * ?")
                 )
                 .build();
+
+        if (schedulerFactoryBean.getObject().checkExists(jobDetail.getKey())) {
+            return;
+        }
 
         schedulerFactoryBean.getScheduler().scheduleJob(jobDetail, trigger);
     }

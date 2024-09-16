@@ -27,14 +27,14 @@ public class MyQuartzJob extends QuartzJobBean {
     @Override
     protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
         log.info("MyQuartzJob executing...");
-        myService.myMethod(); // 의존성 주입 확인
-        log.info("MyQuartzJob instance hash code: {}", this.hashCode());
-
-        try {
-            log.info("Thread start");
-            Thread.sleep(10000); // 동시 실행 방지 테스트
-            log.info("Thread end");
-        } catch (InterruptedException ignored) {}
+//        myService.myMethod(); // 의존성 주입 확인
+//        log.info("MyQuartzJob instance hash code: {}", this.hashCode());
+//
+//        try {
+//            log.info("Thread start");
+//            Thread.sleep(10000); // 동시 실행 방지 테스트
+//            log.info("Thread end");
+//        } catch (InterruptedException ignored) {}
     }
 
 }

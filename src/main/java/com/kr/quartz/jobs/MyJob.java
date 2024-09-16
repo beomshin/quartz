@@ -18,7 +18,7 @@ public class MyJob implements Job { //
     @Override
     public void execute(JobExecutionContext jobExecutionContext)  {
       log.info("MyJob executing...");
-      log.info("Job instance hash code: {}", this.hashCode());
+//      log.info("Job instance hash code: {}", this.hashCode());
     }
 
 }
