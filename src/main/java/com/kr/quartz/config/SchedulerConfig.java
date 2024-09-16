@@ -1,7 +1,7 @@
 package com.kr.quartz.config;
 
 import com.kr.quartz.listener.MyJobListener;
-import com.kr.quartz.listener.TriggerListener;
+import com.kr.quartz.listener.MyTriggerListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -26,7 +26,7 @@ public class SchedulerConfig {
         schedulerFactoryBean.setOverwriteExistingJobs(false); // job 중복 허용 (덮어쓰기)
         schedulerFactoryBean.setWaitForJobsToCompleteOnShutdown(true); // shutdown wait 속성
 
-        schedulerFactoryBean.setGlobalTriggerListeners(new TriggerListener());
+        schedulerFactoryBean.setGlobalTriggerListeners(new MyTriggerListener());
         schedulerFactoryBean.setGlobalJobListeners(new MyJobListener()); // job 리스너 등록
 
         return schedulerFactoryBean;

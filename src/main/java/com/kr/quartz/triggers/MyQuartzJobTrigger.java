@@ -14,7 +14,7 @@ public class MyQuartzJobTrigger {
     public MyQuartzJobTrigger(SchedulerFactoryBean schedulerFactoryBean) throws SchedulerException {
 
         var jobDetail = JobBuilder
-                .newJob(MyJob.class)
+                .newJob(MyQuartzJob.class)
                 .withIdentity("myQuartzJob", "group1")
                 .withDescription("my job description")
                 .requestRecovery(true)
@@ -26,9 +26,7 @@ public class MyQuartzJobTrigger {
                 .withIdentity("myQuartzTrigger", "group1")
                 .startNow()
                 .withSchedule(
-                        SimpleScheduleBuilder.simpleSchedule()
-                                .withIntervalInSeconds(5)
-                                .repeatForever()
+                        CronScheduleBuilder.cronSchedule("0/5 * * * * ?")
                 )
                 .build();
 

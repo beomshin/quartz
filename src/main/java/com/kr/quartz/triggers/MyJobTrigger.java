@@ -1,5 +1,6 @@
 package com.kr.quartz.triggers;
 
+import com.kr.quartz.jobs.MyJob;
 import com.kr.quartz.jobs.MyQuartzJob;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.JobBuilder;
@@ -16,7 +17,7 @@ public class MyJobTrigger {
     public MyJobTrigger(SchedulerFactoryBean schedulerFactoryBean) throws SchedulerException {
 
         var jobDetail = JobBuilder
-                .newJob(MyQuartzJob.class)
+                .newJob(MyJob.class)
                 .withIdentity("myJob", "group1")
                 .withDescription("my job description")
                 .requestRecovery(true)
@@ -34,7 +35,7 @@ public class MyJobTrigger {
                 )
                 .build();
 
-        schedulerFactoryBean.getScheduler().scheduleJob(jobDetail, trigger);
+//        schedulerFactoryBean.getScheduler().scheduleJob(jobDetail, trigger);
     }
 
 }

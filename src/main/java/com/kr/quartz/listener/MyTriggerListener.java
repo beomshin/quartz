@@ -3,9 +3,10 @@ package com.kr.quartz.listener;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.JobExecutionContext;
 import org.quartz.Trigger;
+import org.quartz.TriggerListener;
 
 @Slf4j
-public class TriggerListener implements org.quartz.TriggerListener {
+public class MyTriggerListener implements TriggerListener {
 
     @Override
     public String getName() {
@@ -19,6 +20,7 @@ public class TriggerListener implements org.quartz.TriggerListener {
 
     @Override
     public boolean vetoJobExecution(Trigger trigger, JobExecutionContext jobExecutionContext) {
+        // 트리거 중지 여부
         return false;
     }
 
