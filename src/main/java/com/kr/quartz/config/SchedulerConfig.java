@@ -34,7 +34,7 @@ public class SchedulerConfig {
         schedulerFactoryBean.setApplicationContext(applicationContext); // context 등록
 
         schedulerFactoryBean.setOverwriteExistingJobs(true); // job 중복 허용 (덮어쓰기)
-        schedulerFactoryBean.setWaitForJobsToCompleteOnShutdown(false); // shutdown wait 속성
+        schedulerFactoryBean.setWaitForJobsToCompleteOnShutdown(true); // shutdown wait 속성
 
 //        schedulerFactoryBean.setDataSource(dataSource);
         schedulerFactoryBean.setGlobalTriggerListeners(new MyTriggerListener());

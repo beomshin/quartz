@@ -27,13 +27,13 @@ public class MyJobTrigger {
                 .startNow()
                 .withSchedule(
                         SimpleScheduleBuilder.simpleSchedule()
-                                .withIntervalInSeconds(20)
+                                .withIntervalInSeconds(10)
                                 .repeatForever()
                 )
                 .build();
 
         if (schedulerFactoryBean.getObject().checkExists(jobDetail.getKey())) {
-            return;
+            schedulerFactoryBean.getObject().deleteJob(jobDetail.getKey());
         }
 
         schedulerFactoryBean.getScheduler().scheduleJob(jobDetail, trigger);

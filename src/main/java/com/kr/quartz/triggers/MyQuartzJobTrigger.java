@@ -31,7 +31,7 @@ public class MyQuartzJobTrigger {
                 .build();
 
         if (schedulerFactoryBean.getObject().checkExists(jobDetail.getKey())) {
-            return;
+            schedulerFactoryBean.getObject().deleteJob(jobDetail.getKey());
         }
 
         schedulerFactoryBean.getScheduler().scheduleJob(jobDetail, trigger);
